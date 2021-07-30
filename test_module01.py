@@ -1,38 +1,42 @@
 '''
-when you use multiple assert in a single test, if first assert fails then the next assert will never run.
-Untill top asserts are pass it will not go to next elements, hence its always better to use single assert in each test
+__init__.py help us to create files with same filename in multiple sub directories
+when we create python package, __init__.py is automatically created
+
+Always use test in file name to create a pytest file ex: test_filename or filename_test, because pytest will automatically
+identify test files or else we have to explicitly tell pytest about the test files
+
+if you want to share this project with anyone then we have to share the packages (pytest) we are using with them,
+to do that we can run below statement,
+
+>. pip freeze >requirements.txt
+
+all the packages will be listed in requirements.txt file and we can share this with anyone who want to work on this project
+
+Note: you can run just single test by placing cursor anywhere near the braces () near test name and run.
 '''
 
 def test_a1():
-    assert 4<5
-
+    assert 5 + 5 == 10        # assert statement is used to validate if LHS = RHS
+    assert 5 - 5 == 0         # we should not use multiple assert in single test, each test should be testing only one scenario
+    assert 5 / 5 == 1         # this test is only for demo purpose so we are using multiple assertions here
+    assert 5 * 5 == 25
+'''
+when you run above function alone, in output we will see "1 passed" because we are running only one function or test
+'''
 def test_a2():
-    assert 4!=5     # we can use any operator in assert statement
+    assert 9/5 == 1.5, "failed test intentionally"   # we can also put our comment in ""
+# when u run both functions we will see 1 failed, 1 passed in o/p
 
 def test_a3():
-    assert 1        # this will always pass(we can also use True), useful when testing a function which will return any value
-
-def test_a4():
-    assert 0        # this will always fail(we can also use False)
-
-def test_a5():
-    assert 'abc' == 'abc'   # we can compare strings
-
-def test_a6():
-    assert ((3-1)*4/2) == 4 # using expressions
+    assert 9//5 == 1
 
 
-# divmod(9,5) ---- o/p - (1, 4) output will have both quotient and reminder inside a tuple
+'''
+when u want to run this in cmd prompt,
+got to cmd and run,
+venv\Scripts\activate           # this will activate virtual environment
 
-def test_a7():
-    assert 1 in divmod(9,5)     # it will check if 1 is present in (1, 4) or not
+and then run the code,
+pytest -v pytest_topics
 
-def test_a8():
-    assert 'py' in 'this is pytest'
-
-def test_a9():
-    assert 'put' not in 'this is pytest'
-    assert 4 in [1, 2, 3, 4]            # pass
-    assert [1, 2] in [1,2,3,4]          # fail
-    assert [1, 2] < [1, 2, 3, 4]        # pass
-    assert [1, 2, 3, 4] == [1, 2, 3, 4] # pass
+'''
